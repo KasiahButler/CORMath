@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Vector.cpp">
+      <UniqueIdentifier>{6644a95d-49bc-4af6-99cc-5cc4526d35aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Vector.h">
+      <UniqueIdentifier>{021c1791-1ac5-4935-bffe-ab428cf5a727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shapes.h">
+      <UniqueIdentifier>{3713b6d0-63f8-4361-b79d-6fd7c6989dff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Collision.h">
+      <UniqueIdentifier>{1f0f4dd5-4740-49d4-87fb-237fd5a455ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Matrix.h">
+      <UniqueIdentifier>{61f934d0-d6d6-4c2a-82ae-83384b0518a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Matrix.cpp">
+      <UniqueIdentifier>{8424f95d-e958-4c9d-9591-6b66fde9db43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Collision.cpp">
+      <UniqueIdentifier>{bd375657-b2b9-4e31-b836-29387b828a16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shapes.cpp">
+      <UniqueIdentifier>{a1b70743-7be4-406d-b722-d3831cba0b04}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Vector2.h">
+      <Filter>Header Files\Vector.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Header Files\Vector.h</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
