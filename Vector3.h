@@ -44,6 +44,11 @@ namespace COR
 		return{ lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z };
 	}
 
+	inline Vec3 operator*(const Vec3 &lhs, const Vec3 &rhs)
+	{
+		return{ lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z };
+	}
+
 	inline Vec3 operator*(const Vec3 &lhs, float rhs)
 	{
 		return{ lhs.x * rhs, lhs.y * rhs, lhs.z * rhs };

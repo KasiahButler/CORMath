@@ -18,8 +18,8 @@ namespace COR
 		float  operator[] (unsigned idx) const { return vec[idx]; }
 
 		//Direct Vector Modification Operator Overloads
-		Vec2 &operator+=(const Vec2 &rhs) { return *this = Vec2{ x + rhs.x, y + rhs.y }; }
-		Vec2 &operator-=(const Vec2 &rhs) { return *this = Vec2{ x - rhs.x, y - rhs.y }; }
+		Vec2 &operator+=(const Vec2 &rhs)  { return *this = Vec2{ x + rhs.x, y + rhs.y }; }
+		Vec2 &operator-=(const Vec2 &rhs)  { return *this = Vec2{ x - rhs.x, y - rhs.y }; }
 		Vec2 &operator*=(const float &rhs) { return *this = Vec2{ x * rhs, y * rhs }; }
 		Vec2 &operator/=(const float &rhs) { return *this = Vec2{ x / rhs, y / rhs }; }
 
