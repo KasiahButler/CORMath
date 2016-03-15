@@ -2,6 +2,7 @@
 
 namespace COR
 {
+	//Transpose a Mat3
 	Mat3 Mat3::transpose() const
 	{
 		Mat3 hold;
@@ -11,6 +12,7 @@ namespace COR
 		return hold;
 	}
 
+	//Functions for finding Mat3 Inverse
 	float Mat3::determinant() const
 	{
 		return (m[0][0] * m[1][1] * m[2][2])
@@ -43,6 +45,7 @@ namespace COR
 		else { return true; }
 	}
 
+	//Math Operator Overloads for Mat3
 	Mat3 operator+(const Mat3 &lhs, const Mat3 &rhs)
 	{
 		return{ lhs.col[0] + rhs.col[0], lhs.col[1] + rhs.col[1], lhs.col[2] + rhs.col[2] };
@@ -79,6 +82,7 @@ namespace COR
 		return rhs * lhs;
 	}
 
+	//Rotation, Translate, and Scale Functions
 	Mat3 rotate(float angle) 
 	{ 
 		Mat3 hold = Mat3::identity();
@@ -103,6 +107,7 @@ namespace COR
 		return hold;
 	}
 
+	//Output Stream Overload for Mat3
 	std::ostream& operator<<(std::ostream &os, const Mat3 &output)
 	{
 		os << output.m[0][0] << " " << output.m[1][0] << " " << output.m[2][0] << std::endl;

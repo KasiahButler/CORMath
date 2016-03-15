@@ -21,7 +21,7 @@ namespace COR
 		Mat3 &operator+=(const Mat3 &rhs) { return *this = Mat3 { col[0] + rhs.col[0], col[1] + rhs.col[1], col[2] + rhs.col[2] }; }
 		Mat3 &operator-=(const Mat3 &rhs) { return *this = Mat3 { col[0] - rhs.col[0], col[1] - rhs.col[1], col[2] - rhs.col[2] }; }
 		Mat3 &operator*=(const Mat3 &rhs) { return *this = Mat3 { col[0] * rhs.col[0], col[1] * rhs.col[1], col[2] * rhs.col[2] }; }
-		Mat3 &operator*=(float rhs) { return identity(); }
+		Mat3 &operator*=(float rhs) { return *this = Mat3{ col[0] * rhs, col[1] * rhs, col[2] * rhs }; }
 
 		//Creates an Identity Matrix for Mat3
 		static Mat3 identity()
@@ -33,18 +33,22 @@ namespace COR
 			return r;
 		}
 
+		//Gets Mat3 Directions
 		Vec2 &up()       { return col[1].xy; }
 		Vec2 &right()    { return col[0].xy; }
 		Vec2 &position() { return col[2].xy; }
 		 
+		//Functions to rotate and find Inverse of a Mat3
 		Mat3  transpose() const;
 		float determinant() const;
 		Mat3  inverse() const;
 	};
 
+	//Relational Operators
 	bool operator==(const Mat3 &lhs, const Mat3 &rhs);
 	bool operator!=(const Mat3 &lhs, const Mat3 &rhs);
 
+	//Math Operators
 	Mat3 operator+(const Mat3 &lhs, const Mat3 &rhs);
 	Mat3 operator-(const Mat3 &lhs, const Mat3 &rhs);
 	Mat3 operator*(const Mat3 &lhs, const Mat3 &rhs);
@@ -52,9 +56,11 @@ namespace COR
 	Mat3 operator*(const Mat3 &lhs, const float rhs);
 	Mat3 operator*(const float lhs, const Mat3 &rhs);
 
+	//Transformation Matrices
 	Mat3 rotate(float angle);
 	Mat3 translate(const Vec2 &xy);
 	Mat3 scale(const Vec2 &xy);
 
+	//Mat3 Output Overloads
 	std::ostream& operator<<(std::ostream &os, const Mat3 &output);
 }

@@ -1,6 +1,8 @@
-﻿  Source.cpp
-  Matrix4.cpp
-  Matrix3.cpp
+﻿  Collision.cpp
   Generating Code...
-  CORMath.vcxproj -> C:\Users\SniperCorgii\Documents\Visual Studio 2015\Projects\CORMath\Debug\CORMath.exe
-  CORMath.vcxproj -> C:\Users\SniperCorgii\Documents\Visual Studio 2015\Projects\CORMath\Debug\CORMath.pdb (Partial PDB)
+c:\users\snipercorgii\documents\visual studio 2015\projects\cormath\cormath\collision.cpp(24): warning C4715: 'COR::CollTest': not all control paths return a value
+c:\users\snipercorgii\documents\visual studio 2015\projects\cormath\cormath\collision.cpp(168): warning C4715: 'COR::CollTest': not all control paths return a value
+  Compiling...
+  Matrix4.cpp
+  Generating Code...
+LINK : fatal error LNK1561: entry point must be defined
