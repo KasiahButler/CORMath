@@ -8,17 +8,20 @@ namespace COR
 		bool collision;
 		float depth;
 		Vec2 normal;
+
+		inline Vec2 MTV() { return depth * normal; }
 	};
 
-	//AABB Collision Tests
-	CollData CollTest(const AABB &lhs, const AABB &rhs);
+	float rayPlaneDist(const Ray &ray, const Plane &plane);
 
-	//Circle Collision Tests
 	CollData CollTest(const Circle &lhs, const Circle &rhs);
 	CollData CollTest(const Circle &lhs, const AABB &rhs);
 	CollData CollTest(const Circle &lhs, const Plane &rhs);
 	CollData CollTest(const Circle &lhs, const Ray &rhs);
 
-	//Ray Collision Tests
+	CollData CollTest(const AABB &lhs, const AABB &rhs);
+	CollData CollTest(const AABB &lhs, const Plane &rhs);
+	CollData CollTest(const AABB &lhs, const Ray &rhs);
+
 	CollData CollTest(const Ray &lhs, const Plane &rhs);
 }

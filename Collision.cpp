@@ -23,6 +23,67 @@ namespace COR
 		else return cd = { false, depth, (lhs.position - rhs.position).normal() };
 	}
 
+	CollData CollTest(const Circle &lhs, const AABB &rhs)
+	{
+		CollData cd{ false };
+
+		Vec2 cP = vclamp(lhs.position, rhs.min(), rhs.max());
+
+		if (cP == lhs.position)
+		{
+			Vec2 d{ (cP.x - rhs.min().x < rhs.max().x - cP.x) ? rhs.min().x : rhs.max().x,
+				(cP.y - rhs.min().y < rhs.max().y - cP.y) ? rhs.min().y : rhs.max().y };
+
+			if (abs(d.x - cP.x) < abs(d.y - cP.y))
+			{
+				cP.x = d.x;
+			}
+			else cP.y = d.y;
+		}
+
+		float distSqr = distance(lhs.position, cP) * distance(lhs.position, cP);
+		float radSqr = lhs.radius * lhs.radius;
+
+		if (distSqr < radSqr)
+		{
+			cd.collision = true;
+		}
+
+		cd.depth = lhs.radius - distance(lhs.position, cP);
+
+		cd.normal = (lhs.position - cP).normal();
+
+		return cd;
+	}
+
+	CollData CollTest(const Circle &lhs, const Plane &rhs)
+	{
+		float cDot = dot(rhs.normal, (lhs.position - rhs.position));
+		CollData cd{ false, (lhs.radius - cDot), rhs.normal };
+		if (cDot <= lhs.radius)
+		{
+			cd.collision = true;
+		}
+		return cd;
+	}
+
+	CollData CollTest(const Circle &lhs, const Ray &rhs)
+	{
+		CollData cd = { false, 0, 0 };
+		float cD = dot(lhs.position, rhs.position);
+		float clPoint = fclamp(cD, 0, rhs.length);
+		Vec2 closePoint = rhs.position + rhs.direction * clPoint;
+
+		float cTest = dot((lhs.position - closePoint), (lhs.position - closePoint));
+
+		if (cTest <= lhs.radius * lhs.radius)
+		{
+			//Need to determine Collision Normal and Penetration Depth.
+			cd = { true, 0, 0 };
+		}
+		return cd;
+	}
+
 	CollData CollTest(const AABB &lhs, const AABB &rhs)
 	{
 		CollData cd{ false, 0, 0 };
@@ -89,67 +150,6 @@ namespace COR
 		cd.collision = cd.depth >= 0 && tmin <= tmax && tmin > 0;
 		cd.normal = (t1min > t2min) ? n1 : n2;
 
-		return cd;
-	}
-
-	CollData CollTest(const Circle &lhs, const AABB &rhs)
-	{
-		CollData cd{ false };
-
-		Vec2 cP = vclamp(lhs.position, rhs.min(), rhs.max());
-
-		if (cP == lhs.position)
-		{
-			Vec2 d{ (cP.x - rhs.min().x < rhs.max().x - cP.x) ? rhs.min().x : rhs.max().x,
-				(cP.y - rhs.min().y < rhs.max().y - cP.y) ? rhs.min().y : rhs.max().y };
-
-			if (abs(d.x - cP.x) < abs(d.y - cP.y))
-			{
-				cP.x = d.x;
-			}
-			else cP.y = d.y;
-		}
-
-		float distSqr = distance(lhs.position, cP) * distance(lhs.position, cP);
-		float radSqr = lhs.radius * lhs.radius;
-
-		if (distSqr < radSqr)
-		{
-			cd.collision = true;
-		}
-
-		cd.depth = lhs.radius - distance(lhs.position, cP);
-
-		cd.normal = (lhs.position - cP).normal();
-
-		return cd;
-	}
-
-	CollData CollTest(const Circle &lhs, const Plane &rhs)
-	{
-		float cDot = dot(rhs.normal, (lhs.position - rhs.position));
-		CollData cd{ false, (lhs.radius - cDot), rhs.normal };
-		if (cDot <= lhs.radius)
-		{
-			cd.collision = true;
-		}
-		return cd;
-	}
-
-	CollData CollTest(const Circle &lhs, const Ray &rhs)
-	{
-		CollData cd = { false, 0, 0 };
-		float cD = dot(lhs.position, rhs.position);
-		float clPoint = fclamp(cD, 0, rhs.length);
-		Vec2 closePoint = rhs.position + rhs.direction * clPoint;
-
-		float cTest = dot((lhs.position - closePoint), (lhs.position - closePoint));
-
-		if (cTest <= lhs.radius * lhs.radius)
-		{
-			//Need to determine Collision Normal and Penetration Depth.
-			cd = { true, 0, 0 };
-		}
 		return cd;
 	}
 
