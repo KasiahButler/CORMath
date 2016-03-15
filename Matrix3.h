@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "Vector3.h"
 
 namespace COR
@@ -36,18 +37,24 @@ namespace COR
 		Vec2 &right()    { return col[0].xy; }
 		Vec2 &position() { return col[2].xy; }
 		 
-		float determinant() const { return (m[0][0] * m[1][1] * m[2][2]) + (m[0][1] * m[1][2] * m[2][0]) + (m[0][2] * m[1][0] * m[2][1]) - (m[0][1] * m[1][0] * m[2][2]) - (m[0][0] * m[1][2] * m[2][1]) - (m[0][2] * m[1][1] * m[2][0]); }
-		Mat3  transpose() const {}
-		Mat3  inverse() const { Mat3 hold = { m[1][1] * m[2][2] - m[2][1] * m[1][2], m[2][1] * m[0][2] - m[0][1] * m[2][2], m[0][1] * m[1][2] - m[1][1] * m[0][2], m[2][0] * m[1][2] - m[1][0] * m[2][2], m[0][0] * m[2][2] - m[2][0] * m[0][2], m[1][0] * m[0][2] - m[0][0] * m[1][2], m[1][0] * m[2][1] - m[2][0] * m[1][1], m[2][0] * m[0][1] - m[0][0] * m[2][1], m[0][0] * m[1][1] - m[1][0] * m[0][1] };
-								return hold * (1 / determinant());}
+		Mat3  transpose() const;
+		float determinant() const;
+		Mat3  inverse() const;
 	};
 
-	Mat3 operator*(const Mat3 &lhs, const Mat3 &rhs) { return lhs; }
-	Mat3 operator*(const Mat3 &lhs, const Vec3 &rhs) { return lhs; }
-	Mat3 operator*(const Mat3 &lhs, const float rhs) { return lhs; }
-	Mat3 operator*(const float lhs, const Mat3 &rhs) { return rhs; }
+	bool operator==(const Mat3 &lhs, const Mat3 &rhs);
+	bool operator!=(const Mat3 &lhs, const Mat3 &rhs);
 
-	Mat3 rotate(const Mat3 &target, float angle) { return target; }
-	Mat3 translate(const Mat3 &target, const Vec2 &xy) { return target; }
-	Mat3 scale(const Mat3 &target, const Vec2 &xy) { return target; }
+	Mat3 operator+(const Mat3 &lhs, const Mat3 &rhs);
+	Mat3 operator-(const Mat3 &lhs, const Mat3 &rhs);
+	Mat3 operator*(const Mat3 &lhs, const Mat3 &rhs);
+	Vec3 operator*(const Mat3 &lhs, const Vec3 &rhs);
+	Mat3 operator*(const Mat3 &lhs, const float rhs);
+	Mat3 operator*(const float lhs, const Mat3 &rhs);
+
+	Mat3 rotate(float angle);
+	Mat3 translate(const Vec2 &xy);
+	Mat3 scale(const Vec2 &xy);
+
+	std::ostream& operator<<(std::ostream &os, const Mat3 &output);
 }

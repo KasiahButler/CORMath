@@ -28,7 +28,7 @@ namespace COR
 		Vec4 &operator/=(float rhs) { return *this = Vec4{ x / rhs, y / rhs, z / rhs, w * rhs }; }
 
 		//Unary Negation Overload
-		Vec4 &operator-() { return{ -x, -y, -z, -w }; }
+		Vec4 &operator-() { return *this = Vec4{ -x, -y, -z, -w }; }
 
 		//Functions that only use Data from *this
 		float magnitude() const { return sqrtf(x * x + y * y + z * z + w * w); }
@@ -44,6 +44,11 @@ namespace COR
 	inline Vec4 operator-(const Vec4 &lhs, const Vec4 &rhs)
 	{
 		return{ lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w - rhs.w };
+	}
+
+	inline Vec4 operator*(const Vec4 &lhs, const Vec4 rhs)
+	{
+		return{ lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z, lhs.w * rhs.w };
 	}
 
 	inline Vec4 operator*(const Vec4 &lhs, float rhs)

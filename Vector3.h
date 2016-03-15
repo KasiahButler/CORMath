@@ -27,7 +27,7 @@ namespace COR
 		Vec3 &operator/=(float rhs) { return *this = Vec3{ x / rhs, y / rhs, z / rhs }; }
 
 		//Unary Negation Overload
-		Vec3 &operator-() { return{ -x, -y, -z }; }
+		Vec3 &operator-() { return *this = Vec3{ -x, -y, -z }; }
 
 		//Functions that only use Data from *this
 		float magnitude() const { return sqrtf(x * x + y * y + z * z); }
@@ -70,6 +70,16 @@ namespace COR
 	}
 
 	//Relational Operator Overloads for Vector3
+	inline bool operator==(const Vec3 &lhs, const Vec3 &rhs)
+	{
+		if (abs(lhs.x - rhs.x) <= FLT_EPSILON && abs(lhs.y - rhs.y) <= FLT_EPSILON && abs(lhs.z - rhs.z) <= FLT_EPSILON) { return true; } return false;
+	}
+
+	inline bool operator!=(const Vec3 &lhs, const Vec3 &rhs)
+	{
+		if (lhs == rhs) { return false; } return true;
+	}
+
 	inline bool operator>(const Vec3 &lhs, const Vec3 &rhs)
 	{
 		if (lhs.x > rhs.x && lhs.y > rhs.y && lhs.z > rhs.z) { return true; } return false;
@@ -88,16 +98,6 @@ namespace COR
 	inline bool operator<=(const Vec3 &lhs, const Vec3 &rhs) 
 	{ 
 		if (lhs < rhs || lhs == rhs) { return true; } return false; 
-	}
-
-	inline bool operator==(const Vec3 &lhs, const Vec3 &rhs)
-	{
-		if (abs(lhs.x - rhs.x) <= FLT_EPSILON && abs(lhs.y - rhs.y) <= FLT_EPSILON && abs(lhs.z - rhs.z) <= FLT_EPSILON) { return true; } return false;
-	}
-
-	inline bool operator!=(const Vec3 &lhs, const Vec3 &rhs)
-	{
-		if (lhs == rhs) { return false; } return true;
 	}
 
 	//Functions that require multiple variables to be passed in

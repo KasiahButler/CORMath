@@ -59,5 +59,11 @@
     <ClCompile Include="Matrix3.cpp">
       <Filter>Source Files\Matrix.cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4.cpp">
+      <Filter>Source Files\Matrix.cpp</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
